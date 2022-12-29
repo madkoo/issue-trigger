@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name:  add label
-        uses: actions/github-scripts@v6
+        uses: actions/github-script@v6
         with:
           script: |
               await github.rest.issues.update({
