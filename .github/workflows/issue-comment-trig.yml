@@ -8,6 +8,8 @@ on:
 jobs:
   trigger-on-comment:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name:  add label
         uses: actions/github-script@v6
