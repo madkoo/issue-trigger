@@ -1,16 +1,16 @@
 
-const { Octokit } = require('@octokit/core');
+const { Octokit } = require("@octokit/rest");
 
 module.exports = async ({ github, context, options }) => {
 
     const octokit = new Octokit({
-        auth: `${options.Token}`
+        auth: options.Token
       })
       
-      await octokit.rest.issues.createComment({
+      await octokit.issues.createComment({
         owner: context.repo.owner,
         repo: context.repo.repo,
-        issue_number: issue.number,
-        body: '/run-production-migration'
+        issue_number: context.issue.number,
+        body: 'wil lthis work'
       })
 }
