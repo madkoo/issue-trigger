@@ -4,14 +4,16 @@ on:
   workflow_dispatch:
   issue_comment:
     types: [created,edited]
+
+permissions:
+    issues: write
+    actions: read
   
 jobs:
   trigger-on-comment:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
-      - name:  add label
+      - name: add label
         uses: actions/github-script@v6
         with:
           script: |
