@@ -7,7 +7,7 @@ module.exports = async ({ github, context, options }) => {
         auth: `${options.Token}`
       })
       
-      await octokit.issues.createComment({
+      await octokit.rest.issues.createComment({
         owner: context.repo.owner,
         repo: context.repo.repo,
         issue_number: issue.number,
