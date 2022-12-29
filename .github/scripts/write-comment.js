@@ -3,7 +3,7 @@ const { Octokit } = require("@octokit/rest");
 
 module.exports = async ({ github, context, options }) => {
 
-    const ghecAdminToken = options.adminToken
+    const ghecAdminToken = options.token
     const octokit = new Octokit({
         auth: ghecAdminToken
       })
