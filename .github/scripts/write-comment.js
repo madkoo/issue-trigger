@@ -1,7 +1,7 @@
 
 const { Octokit } = require('@octokit/core');
 
-module.exports = ({context, core, options}) => {
+module.exports = async ({ github, context, options }) => {
 
     const octokit = new Octokit({
         auth: `${options.Token}`
