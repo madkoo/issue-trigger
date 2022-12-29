@@ -8,7 +8,8 @@ on:
 permissions:
     issues: write
     actions: read
-  
+env:
+  GITHUB_TOKEN: ${{secrets.MY_PAT}}
 jobs:
   trigger-on-comment:
     runs-on: ubuntu-latest
