@@ -13,7 +13,7 @@ jobs:
     
     steps:
     - name: First comment
-      uses: actions/github-scripts@v6
+      uses: actions/github-script@v6
       with:
         script: |
           await github.rest.issues.createComment({
