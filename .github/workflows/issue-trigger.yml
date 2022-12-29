@@ -1,0 +1,26 @@
+name: Trigger on issue
+
+on:
+  workflow_dispatch: 
+  issues: 
+    types: [opened, edited]
+ 
+    
+    
+jobs:
+  test-run:
+    runs-on: ubuntu-lates
+    
+    steps:
+    - name: First comment
+      uses: actions/github-scripts@v6
+      with:
+        script: |
+          await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: context.issue.number,
+                    body: 'write comment'
+                  })
+          
+  
