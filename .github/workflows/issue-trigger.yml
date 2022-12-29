@@ -18,13 +18,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          await github.rest.issues.createComment({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    issue_number: context.issue.number,
-                    body: 'write comment'
-                  })
-      env:
-        GITHUB_TOKEN:  ${{ secrets.MY_PAT }}
+           const options = { token: '${{ secrets.MY_PAT }}' }
+           await require('./.github/scripts/write-comment.js')({github, context, options})
           
   
