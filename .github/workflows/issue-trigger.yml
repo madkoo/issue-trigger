@@ -23,11 +23,23 @@ jobs:
       - name: Install Node dependencies
         run: npm install --no-save @octokit/rest
     
-      - name: First comment
+      - name: comment
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.MY_PAT }}
           script: |
-             const options = { token: '${{ secrets.MY_PAT }}' }
-             await require('./.github/scripts/write-comment.js')({github, context, options})
+            await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: context.issue.number,
+                    body: 'write comment'
+                  })
+    
+    #  - name: First comment
+    #    uses: actions/github-script@v6
+    #   with:
+    #      script: |
+    #         const options = { token: '${{ secrets.MY_PAT }}' }
+    #         await require('./.github/scripts/write-comment.js')({github, context, options})
 
   
