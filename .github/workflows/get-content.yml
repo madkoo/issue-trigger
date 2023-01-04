@@ -28,7 +28,7 @@ jobs:
                 -H "Authorization: Bearer ${{secrets.MY_PAT}}" \
                 -H "X-GitHub-API-Version: 2022-11-28" \
                 https://api.github.com/repos/madkoo/wic-app-mobile/contents/.github/docs/myjson.json \
-                | jq -r ".content" | base64 --decode | output myfile2.json
+                --output myfile2.json | jq -r ".content" | base64 --decode 
                 
 
       - name: print file
