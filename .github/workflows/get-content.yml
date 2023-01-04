@@ -5,19 +5,19 @@ on:
   
 jobs:
   get-content:
-  runs-on: ubuntu-latest
-  steps:
-    - name: get content
-      id: get-file
-      shell: bash
-      run: | 
-        curl -H "Accept: application/vnd.github+json" \
-             -H "Authorization: Bearer ${{secrets.MY_PAT}}" \
-             -H "X-GitHub-API-Version: 2022-11-28" \
-             https://api.github.com/repos/madkoo/wic-app-mobile/contents/.github/docs/myjson.json \
-             --output myfile.json
-             
-     - name: print file
-       run: cat myfile.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: get content
+        id: get-file
+        shell: bash
+        run: |
+            curl -H "Accept: application/vnd.github+json" \
+                -H "Authorization: Bearer ${{secrets.MY_PAT}}" \
+                -H "X-GitHub-API-Version: 2022-11-28" \
+                https://api.github.com/repos/madkoo/wic-app-mobile/contents/.github/docs/myjson.json \
+                --output myfile.json
+
+      - name: print file
+        run: cat myfile.json
              
      
