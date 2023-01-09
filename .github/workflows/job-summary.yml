@@ -20,7 +20,7 @@ jobs:
       run : |
         body="### Hello world! :rocket:"
         echo $body >> $GITHUB_STEP_SUMMARY
-        echo "GITHUB_STEP_SUMMARY="${ echo $body }"" >> $GITHUB_OUTPUT
+        echo "job_summary=${ echo $body }" >> $GITHUB_OUTPUT
 
     # create pull request review comment
     - name: create a pull request review comment
@@ -28,7 +28,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const body = `Job Summary: ${{steps.add-job-summary.outputs.GITHUB_STEP_SUMMARY}}`
+          const body = `Job Summary: ${{steps.add-job-summary.outputs.job_summary}}`
 
           github.rest.pulls.createReview({
             owner: context.repo.owner,
