@@ -19,7 +19,7 @@ jobs:
       id: add-job-summary
       run : |
         echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
-        echo "job_summary=$GITHUB_STEP_SUMMARY" >> $GITHUB_OUTPUT
+        echo "job_summary=${ echo "$GITHUB_STEP_SUMMARY" }" >> $GITHUB_OUTPUT
 
     # create pull request review comment
     - name: create a pull request review comment
