@@ -1,0 +1,42 @@
+# create a action to publish  $GITHUB_STEP_SUMMARY to pull request
+
+name: Publish Job Summary
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  publish-job-summary:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v2
+
+    # output github step summary to output variable
+    - name: adding job summary
+      id: add-job-summary
+      run : |
+        echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+        echo "::set-output name=job_summary::$(cat $GITHUB_STEP_SUMMARY)"
+
+    # create pull request review comment
+    - name: create a pull request review comment
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const body = `Job Summary: ${{add-job-summary.outputs.job_summary}}`
+
+          github.pulls.createReview({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.payload.pull_request.number,
+            body: body,
+            event: 'COMMENT'
+          })
+
+    
+      
+
