@@ -20,7 +20,7 @@ jobs:
       run : |
         body="### Hello world! :rocket:"
         echo $body >> $GITHUB_STEP_SUMMARY
-        echo "GITHUB_STEP_SUMMARY="{ echo $body }" >> $GITHUB_OUTPUT
+        echo "GITHUB_STEP_SUMMARY=${ echo $body }" >> $GITHUB_OUTPUT
 
     # create pull request review comment
     - name: create a pull request review comment
