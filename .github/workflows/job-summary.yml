@@ -27,7 +27,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const body = `Job Summary: ${{add-job-summary.outputs.job_summary}}`
+          const body = `Job Summary: ${add-job-summary.outputs.job_summary}`
 
           github.pulls.createReview({
             owner: context.repo.owner,
